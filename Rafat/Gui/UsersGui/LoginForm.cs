@@ -90,7 +90,7 @@ namespace Rafat.Gui.UsersGui
 
                 // Success Add 
                 Add(" Login Success ",
-                    $" {user.FullName} has Login ");
+                    $" {user.UserName} has Login ");
 
                 Main main = new Main();
                 main.Show();
