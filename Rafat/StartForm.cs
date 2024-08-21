@@ -7,7 +7,8 @@ namespace Rafat
     // ReSharper disable once ArrangeTypeModifiers
     partial class StartForm : Form
     {
-        private bool _isLoggingin=false;
+        private LoginForm loginForm = null;
+        private readonly bool _isLoggingin=false;
 
         private DBContext db;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -55,9 +56,17 @@ namespace Rafat
                 // Show Login From
                 timerStart.Enabled = false;
                 this.Hide();
-                LoginForm loginForm = new LoginForm();
-                loginForm.Show();
-                loginForm.FormClosed += (s, args) => this.Close();
+                if (loginForm == null)
+                {
+                    loginForm = new LoginForm();
+                    loginForm.Show();
+                    loginForm.FormClosed += (s, args) => this.Close();
+                }
+                else
+                {
+                    loginForm.Show();
+                }
+                
             }
             else
             {
