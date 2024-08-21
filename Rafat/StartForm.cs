@@ -1,4 +1,5 @@
-﻿using Rafat.Data.EF;
+﻿using Rafat.Code.Helper;
+using Rafat.Data.EF;
 using Rafat.Gui.UsersGui;
 
 namespace Rafat
@@ -6,7 +7,7 @@ namespace Rafat
     // ReSharper disable once ArrangeTypeModifiers
     partial class StartForm : Form
     {
-
+        private bool _isLoggingin=false;
 
         private DBContext db;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -29,6 +30,20 @@ namespace Rafat
             Application.Exit();
         }
 
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+           
+            if (!_isLoggingin)
+            {
+                Application.Exit();
+            }
+
+
+        }
+
+
         private async void timerStart_Tick(object sender, EventArgs e)
         {
             db = new DBContext();
@@ -39,9 +54,10 @@ namespace Rafat
             {
                 // Show Login From
                 timerStart.Enabled = false;
+                this.Hide();
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show();
-                this.Close();
+                loginForm.FormClosed += (s, args) => this.Close();
             }
             else
             {
@@ -49,7 +65,5 @@ namespace Rafat
 
             }
         }
-
-       
     }
 }

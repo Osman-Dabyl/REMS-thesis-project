@@ -271,7 +271,6 @@ public partial class Main : Form
 
         if (!_isLoggingOut)
         {
-     
             Application.Exit();
         }
 
