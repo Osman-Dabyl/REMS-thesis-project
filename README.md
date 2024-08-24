@@ -2,9 +2,9 @@
 
 # Real Estate Management Software
 
-This repository contains the official project for the Employee Management Software development course. The project is developed using the following technologies:
+This repository contains the official project for the Real Estate Management Software. The project is developed using the following technologies:
 
-- .NET 7
+- .NET 6
 - C#
 - Windows Forms
 - SQL Server
