@@ -11,9 +11,9 @@ namespace Rafat.Core.Enums
 
         public enum PropertyType
         {
-            House = 1,
-            Land = 2,
-            business = 3
+            House = 0,
+            Land = 1,
+            business = 2
         }
       
 

@@ -344,6 +344,7 @@ namespace Rafat.Gui.PropertysGui
             dataGridView1.Size = new Size(988, 542);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.ColumnHeaderMouseClick += dataGridView1_ColumnHeaderMouseClick;
             // 
             // timer1
             // 

@@ -50,7 +50,7 @@
             labelName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelName.AutoSize = true;
             labelName.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            labelName.ForeColor = SystemColors.ControlLightLight;
+            labelName.ForeColor = Color.FromArgb(0, 0, 46);
             labelName.Location = new Point(-1, 307);
             labelName.Name = "labelName";
             labelName.Size = new Size(163, 34);

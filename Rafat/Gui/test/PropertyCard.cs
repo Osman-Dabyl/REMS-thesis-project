@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rafat.Gui.PropertysGui;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,26 @@ namespace Rafat.Gui.test;
 
 public partial class PropertyCard : UserControl
 {
+    private AddPropertyForm addPropertyForm;
+    private Main _main;
     public PropertyCard()
     {
         InitializeComponent();
 
+        this.Click += PropertyCard_Click;
+
+        // Attach click event to all child controls within the PropertyCard
+        foreach (Control control in this.Controls)
+        {
+            control.Click += PropertyCard_Click;
+        }
+
         this.Size = new Size(365, 402);
+        this.BorderStyle = BorderStyle.None;
     }
 
-      
-        
+
+
     public int PropertyId { get; set; }
 
 
@@ -30,6 +42,7 @@ public partial class PropertyCard : UserControl
         pictureBox1.Image = image;
         labelName.Text = name;
         labelPrice.Text = price;
+        
     }
 
     protected override void OnResize(EventArgs e)
@@ -40,21 +53,32 @@ public partial class PropertyCard : UserControl
     }
 
     // Event to handle clicks for editing or deleting
-    private void PropertyCardControl_Click(object sender, EventArgs e)
+    private void PropertyCard_Click(object sender, EventArgs e)
     {
-        // Raise an event or handle directly here
-        
+        int id = PropertyId;
+        if (addPropertyForm == null || addPropertyForm.IsDisposed)
+        {
+            addPropertyForm = new AddPropertyForm(_main, id);
+            addPropertyForm.Show();
+        }
+        else
+        {
+            addPropertyForm.Focus();
+        }
+
     }
 
-    //private void OpenEditForm(int propertyId)
-    //{
-    //    // Implement your editing logic here
-    //    var editForm = new EditPropertyForm(propertyId);
-    //    editForm.ShowDialog();
-
-    //    // Optionally refresh the view after editing
-    //    // Assuming parent control has a method to reload the data
-    //    ((YourParentControl)this.Parent).ReloadPropertyCards();
-
-    //}
+    private void PropertyCard_MouseClick(object sender, MouseEventArgs e)
+    {
+        int id = PropertyId;
+        if (addPropertyForm == null || addPropertyForm.IsDisposed)
+        {
+            addPropertyForm = new AddPropertyForm(_main, id);
+            addPropertyForm.Show();
+        }
+        else
+        {
+            addPropertyForm.Focus();
+        }
+    }
 }

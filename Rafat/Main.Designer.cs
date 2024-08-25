@@ -453,14 +453,14 @@
             MenuProp.MenuItemTextColor = Color.Empty;
             MenuProp.Name = "MenuProp";
             MenuProp.PrimaryColor = Color.Empty;
-            MenuProp.Size = new Size(221, 114);
+            MenuProp.Size = new Size(241, 147);
             // 
             // AddpropertyMenu
             // 
             AddpropertyMenu.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             AddpropertyMenu.Margin = new Padding(4);
             AddpropertyMenu.Name = "AddpropertyMenu";
-            AddpropertyMenu.Size = new Size(220, 32);
+            AddpropertyMenu.Size = new Size(240, 32);
             AddpropertyMenu.Text = "Add Property";
             AddpropertyMenu.Click += AddpropertyMenu_Click;
             // 
@@ -469,14 +469,17 @@
             viewPropertiesToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             viewPropertiesToolStripMenuItem.Margin = new Padding(3);
             viewPropertiesToolStripMenuItem.Name = "viewPropertiesToolStripMenuItem";
-            viewPropertiesToolStripMenuItem.Size = new Size(220, 32);
+            viewPropertiesToolStripMenuItem.Size = new Size(240, 32);
             viewPropertiesToolStripMenuItem.Text = "View Properties";
             viewPropertiesToolStripMenuItem.Click += viewPropertiesToolStripMenuItem_Click;
             // 
             // viewListToolStripMenuItem
             // 
+            viewListToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             viewListToolStripMenuItem.Name = "viewListToolStripMenuItem";
-            viewListToolStripMenuItem.Size = new Size(220, 32);
+            viewListToolStripMenuItem.Size = new Size(240, 32);
+            viewListToolStripMenuItem.Text = "View In List";
+            viewListToolStripMenuItem.Click += viewListToolStripMenuItem_Click;
             // 
             // MenuCust
             // 

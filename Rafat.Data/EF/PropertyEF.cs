@@ -52,8 +52,11 @@ namespace Rafat.Data.EF
             try
             {
                 return db.Properties
-            
-                    .Where(x => x.PropertyId.ToString()==searchIteam).ToList();
+
+                    .Where(
+                    x => x.Listing.ToString() == searchIteam
+                   
+                    ).ToList();
 
             }
             catch 

@@ -631,6 +631,16 @@ namespace Rafat.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_sold_home_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-sold-home-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_sync_32px {
             get {
                 object obj = ResourceManager.GetObject("icons8_sync_32px", resourceCulture);
@@ -724,6 +734,16 @@ namespace Rafat.Properties {
         internal static System.Drawing.Bitmap images {
             get {
                 object obj = ResourceManager.GetObject("images", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IMG_20200720_WA0056 {
+            get {
+                object obj = ResourceManager.GetObject("IMG-20200720-WA0056", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

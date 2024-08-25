@@ -531,7 +531,6 @@
             // 
             cmbOrdertype.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cmbOrdertype.FormattingEnabled = true;
-            cmbOrdertype.Items.AddRange(new object[] { "Sale", "Rent" });
             cmbOrdertype.Location = new Point(237, 303);
             cmbOrdertype.Name = "cmbOrdertype";
             cmbOrdertype.Size = new Size(89, 33);
