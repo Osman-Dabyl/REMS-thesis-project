@@ -38,7 +38,7 @@ public partial class Main : Form
         pageHelper = new PageHelper(this);
 
         // Set Home Page
-        pageHelper.SetPage(testuser.Instance(_main!));
+        pageHelper.SetPage(HomeUserControl.Instance());
         // Get And Set The Window State
         SetScreenState(Settings.Default.IsMaxScreen);
 
@@ -68,7 +68,7 @@ public partial class Main : Form
     // Test
     private void SetRoles()
     {
-        
+
         label5.Text = LocalUser.UserName;
 
         if (LocalUser.Role != "Admin")
@@ -289,7 +289,7 @@ public partial class Main : Form
 
     private void LogOut_Click(object sender, EventArgs e)
     {
-         _isLoggingOut = true;
+        _isLoggingOut = true;
 
         if (loginForm == null || loginForm.IsDisposed)
         {
@@ -304,5 +304,10 @@ public partial class Main : Form
             loginForm.Focus();
             this.Close();
         }
+    }
+
+    private void viewListToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        pageHelper.SetPage(testuser.Instance(_main!));
     }
 }

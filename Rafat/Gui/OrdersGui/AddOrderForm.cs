@@ -2,20 +2,11 @@
 using Rafat.Code.Helper;
 using Rafat.Code.Models;
 using Rafat.Core;
+using Rafat.Core.Enums;
 using Rafat.Data.EF;
 using Rafat.Gui.LoadingGui;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using GMap.NET;
-using GMap.NET.MapProviders;
-using Rafat.Core.Enums;
+using static Rafat.Core.Enums.Listing_Type;
 using static Rafat.Core.Enums.Order_Status;
 
 namespace Rafat.Gui.OrdersGui
@@ -30,6 +21,7 @@ namespace Rafat.Gui.OrdersGui
         private int id;
         private DateTime orderCreatedDate;
         private OrderStatus currentOrderStatus;
+        private Oreder_Type.OrderType currentOrderType = Oreder_Type.OrderType.Purchase;
 
         private List<Customer> customerList;
         private List<Property> propertyList;
@@ -37,7 +29,7 @@ namespace Rafat.Gui.OrdersGui
 
         private readonly OrdersUserControl page;
 
-        public AddOrderForm  (Main main, int id)
+        public AddOrderForm(Main main, int id)
         {
             InitializeComponent();
 
@@ -61,6 +53,7 @@ namespace Rafat.Gui.OrdersGui
             LoadCustomer();
             LoadProperty();
 
+            cmbOrdertype.DataSource = Enum.GetValues(typeof(Listing_Type.ListingType));
             cmbChoice.DataSource = customerList;
             cmbpchoise.DataSource = propertyList;
 
@@ -69,7 +62,7 @@ namespace Rafat.Gui.OrdersGui
                 SetDataForEdit();
 
 
-              
+
             }
             else
             {
@@ -78,7 +71,7 @@ namespace Rafat.Gui.OrdersGui
                 lblOrid.Text = nextorderid.ToString();
 
             }
-          
+
 
         }
 
@@ -101,10 +94,24 @@ namespace Rafat.Gui.OrdersGui
 
         }
 
-    
+
 
         private async void Add(Order_Status.OrderStatus orderStatus)
         {
+
+            DateTime? renttimestart = null;
+            DateTime? renttimeend = null;
+
+            if (cmbOrdertype.SelectedItem != null && cmbOrdertype.SelectedItem.ToString() == "Rent")
+            {
+                renttimestart = rentstartdate.Value;
+                renttimeend = rentenddate.Value;
+                currentOrderType = Oreder_Type.OrderType.Rent;
+            }
+
+
+
+
             var propid = (int)cmbpchoise.SelectedValue;
             var salePrice = await Task.Run((() => dataHelperForProperty.Find(propid)));
 
@@ -115,10 +122,11 @@ namespace Rafat.Gui.OrdersGui
                 CustomerId = (int)cmbChoice.SelectedValue,
                 OrderDate = DateTime.Now,
                 SalePrice = salePrice.Price,
-                RentStartDate = rentstartdate.Value,
-                RentEndDate = rentenddate.Value,
+                RentStartDate = renttimestart,
+                RentEndDate = renttimeend,
                 RentAmount = null,
                 Balance = null,
+                Ordertype = currentOrderType,
                 Status = orderStatus,
 
 
@@ -150,12 +158,23 @@ namespace Rafat.Gui.OrdersGui
         }
 
         private async void Edit(Order_Status.OrderStatus orderStatus)
-        { 
-            var propid = (int)cmbpchoise.SelectedValue;
+        {
+
+            DateTime? renttimestart = null;
+            DateTime? renttimeend = null;
+
+
 
             var orderid = await Task.Run((() => dataHelperForOrder.Find(id)));
 
-         var salePrice = await Task.Run((() => dataHelperForProperty.Find(orderid.PropertyId)));
+            var salePrice = await Task.Run((() => dataHelperForProperty.Find(orderid.PropertyId)));
+
+            if (orderid.Ordertype == Oreder_Type.OrderType.Rent)
+            {
+                renttimestart = rentstartdate.Value;
+                renttimeend = rentenddate.Value;
+                currentOrderType = Oreder_Type.OrderType.Rent;
+            }
 
             // Set User
             Order order = new Order
@@ -164,12 +183,17 @@ namespace Rafat.Gui.OrdersGui
                 PropertyId = (int)cmbpchoise.SelectedValue,
                 CustomerId = (int)cmbChoice.SelectedValue,
                 OrderDate = DateTime.Now,
-                RentStartDate = rentstartdate.Value,
-                RentEndDate = rentenddate.Value,
                 SalePrice = salePrice.Price,
+                RentStartDate = renttimestart,
+                RentEndDate = renttimeend,
                 RentAmount = null,
                 Balance = null,
+                Ordertype = currentOrderType,
                 Status = orderStatus,
+
+
+
+
                 UserId = SetUserId()
 
             };
@@ -183,7 +207,7 @@ namespace Rafat.Gui.OrdersGui
 
                 // Success
                 // Success
-               
+
                 //page.LoadData();
                 ToastHelper.ShowEditToast();
                 this.Close();
@@ -206,25 +230,56 @@ namespace Rafat.Gui.OrdersGui
         {
             // Get Edit User Data
 
+            cmbOrdertype.Enabled = false;
+
             var order = await Task.Run(() => dataHelperForOrder.Find(id));
+            var customername = await Task.Run(() => dataHelperForCustomer.GetAllData().Where(x => x.CustomerId == order.CustomerId).ToList());
 
-                lblOrid.Text = order.OrderId.ToString();
-                lblDate.Text = order.OrderDate.ToString();
-                cmbChoice.SelectedValue = order.CustomerId;
-                txtPprice.Text = order.SalePrice.ToString();
-                cmbpchoise.SelectedValue = order.PropertyId;
+            var salectedprop = await Task.Run(() => dataHelperForProperty.GetAllData().Where(x => x.PropertyId == order.PropertyId).ToList());
 
-            
-        
+            if (order.Ordertype == Oreder_Type.OrderType.Rent)
+            {
+                currentOrderType = Oreder_Type.OrderType.Rent;
+                pnlrent.Visible = true;
+
+                rentstartdate.Value = order.RentStartDate.Value;
+                rentenddate.Value = order.RentEndDate.Value;
+
+            }
+
+            cmbChoice.DataSource = null;
+            cmbChoice.Items.Clear();
+            cmbpchoise.DataSource = null;
+            cmbpchoise.Items.Clear();
+            cmbpchoise.DataSource = salectedprop;
+            cmbpchoise.DisplayMember = "DisplayName"; // assuming FullName is a property of the Agent entity
+            cmbpchoise.ValueMember = "PropertyId";
+            cmbpchoise.SelectedValue = order.PropertyId;
+            lblOrid.Text = order.OrderId.ToString();
+            lblDate.Text = order.OrderDate.ToString();
+            cmbChoice.DataSource = customername;
+            cmbChoice.DisplayMember = "FullName"; // assuming FullName is a property of the Agent entity
+            cmbChoice.ValueMember = "CustomerId";
+            txtPprice.Text = order.SalePrice.ToString();
+            txtCnumber.Text = customername.Select(x => x.Phone).ToString();
+
+
+
+            cmbChoice.SelectedIndex = 0;
+
             // Set Roles
 
-            if (order.Status == OrderStatus.Pending)
+            if (order.Status == OrderStatus.Accepted || order.Status == OrderStatus.Rejected)
             {
-                btnReject.Visible = true;
+                btnReject.Enabled = false;
+                btnConfirm.Enabled = false;
+                btnSave.Enabled = false;
             }
             else
             {
-                btnReject.Visible = false;
+                btnReject.Enabled = true;
+                btnConfirm.Enabled = true;
+                btnSave.Enabled = true;
             }
 
 
@@ -233,16 +288,23 @@ namespace Rafat.Gui.OrdersGui
 
         private void btnclose_Click(object sender, EventArgs e)
         {
-            currentOrderStatus = OrderStatus.Rejected;
 
-            Edit(currentOrderStatus);
+            if (id > 0)
+            {
+                currentOrderStatus = OrderStatus.Rejected;
 
-
+                Edit(currentOrderStatus);
+                this.Close();
+            }
             this.Close();
         }
 
         private void cmbOrdertype_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
+            LoadProperty();
+
             if (cmbOrdertype.SelectedItem != null && cmbOrdertype.SelectedItem.ToString() == "Rent")
             {
 
@@ -263,34 +325,51 @@ namespace Rafat.Gui.OrdersGui
         private async void btnConfirm_Click(object sender, EventArgs e)
         {
 
-           
+
 
             currentOrderStatus = OrderStatus.Accepted;
 
-         
+
+            var propid = (int)cmbpchoise.SelectedValue;
+            var salectedProperty = await Task.Run((() => dataHelperForProperty.Find(propid)));
+            if (salectedProperty.Listing == Listing_Type.ListingType.Rent)
+            {
+                salectedProperty.Status = Property_Stutus.PropertyStatus.Rented;
+                currentOrderType = Oreder_Type.OrderType.Rent;
+            }
+            else
+            {
+                salectedProperty.Status = Property_Stutus.PropertyStatus.Sold;
+                currentOrderType = Oreder_Type.OrderType.Purchase;
+            }
+
+
+            // Add
+            if (id == 0)
+            {
+                Add(currentOrderStatus);
+            }
+            else
+            {
+
+                Edit(currentOrderStatus);
+            }
 
 
 
-                    // Add
-                    if (id == 0)
-                    {
-                        Add(currentOrderStatus);
-                    }
-                    else
-                    {
+            string orderType = cmbOrdertype.SelectedItem?.ToString();
 
-                        Edit(currentOrderStatus);
-                    }
+            var action = "Rented";
 
-                    var propid = (int)cmbpchoise.SelectedValue;
-                    var salectedProperty = await Task.Run((() => dataHelperForProperty.Find(propid)));
+            if (currentOrderType == Oreder_Type.OrderType.Purchase)
+            {
+                action = "Sold";
+            }
 
-                    salectedProperty.Status = Property_Stutus.PropertyStatus.Sold;
+            SystemRecordHelper.Add("Order placed",
+                $"{salectedProperty.DisplayName} {action} ");
 
-                    SystemRecordHelper.Add("Order placed",
-                        $"{salectedProperty.DisplayName} Sold ");
-
-                    await Task.Run((() => dataHelperForProperty.Edit(salectedProperty)));
+            await Task.Run((() => dataHelperForProperty.Edit(salectedProperty)));
 
 
 
@@ -301,8 +380,9 @@ namespace Rafat.Gui.OrdersGui
         private async void LoadProperty()
         {
             cmbpchoise.SelectedIndexChanged -= cmbpchoise_SelectedIndexChanged;
+            cmbOrdertype.SelectedIndexChanged -= cmbOrdertype_SelectedIndexChanged;
             propertyList = await Task.Run(() => dataHelperForProperty.GetAllData()
-                .Where(p => p.Status == Property_Stutus.PropertyStatus.Available).ToList()
+                .Where(p => p.Status == Property_Stutus.PropertyStatus.Available && p.Listing == (ListingType)cmbOrdertype.SelectedItem).ToList()
                 );
             cmbpchoise.DataSource = propertyList;
             cmbpchoise.DisplayMember = "DisplayName"; // assuming FullName is a property of the Agent entity
@@ -312,9 +392,10 @@ namespace Rafat.Gui.OrdersGui
             txtPprice.Clear();
 
             cmbpchoise.SelectedIndexChanged += cmbpchoise_SelectedIndexChanged;
+            cmbOrdertype.SelectedIndexChanged += cmbOrdertype_SelectedIndexChanged;
         }
 
-      
+
 
 
         private async void LoadCustomer()
@@ -385,7 +466,7 @@ namespace Rafat.Gui.OrdersGui
 
         private int GetNextOrderId()
         {
-            
+
 
             // Assuming you are using Entity Framework or similar
             int maxOrderId = db.Orders.Max(o => (int?)o.OrderId) ?? 0;
@@ -395,6 +476,14 @@ namespace Rafat.Gui.OrdersGui
         private async void btnSave_Click(object sender, EventArgs e)
         {
             currentOrderStatus = OrderStatus.Pending;
+            if (cmbOrdertype.SelectedItem != null && cmbOrdertype.SelectedItem.ToString() == "Rent")
+            {
+                currentOrderType = Oreder_Type.OrderType.Rent;
+            }
+            else
+            {
+                currentOrderType = Oreder_Type.OrderType.Purchase;
+            }
 
             // Check the fields
             if (!IsValid())

@@ -16,7 +16,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Rafat.Gui.test;
+using DocumentFormat.OpenXml.Drawing;
 namespace Rafat.Gui.PropertysGui
 {
     public partial class PropertsUserControl : UserControl
@@ -28,6 +29,8 @@ namespace Rafat.Gui.PropertysGui
         private List<Core.Property> data;
         private List<int> idDeleteList;
         private DBContext db;
+        private readonly testuser pagelist;
+        private SortableBindingList<Property> datalist;
 
 
         public PropertsUserControl()
@@ -38,6 +41,8 @@ namespace Rafat.Gui.PropertysGui
             data = new List<Core.Property>();
             idDeleteList = new List<int>();
             db = new DBContext();
+            datalist = new SortableBindingList<Property>();
+            pagelist = testuser.Instance(_main);
             LoadData();
 
 
@@ -57,7 +62,7 @@ namespace Rafat.Gui.PropertysGui
         }
 
 
-      
+
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
@@ -85,17 +90,18 @@ namespace Rafat.Gui.PropertysGui
                                 // Loop into Id List
                                 foreach (int id in idDeleteList)
                                 {
-                                    
+
                                     var prop = await Task.Run(() =>
                                         dataHelper.Find(id));
                                     await Task.Run(() => dataHelper.Delete(id));
 
                                     SystemRecordHelper.Add("Delete Property",
                                             $"({prop.DisplayName}) record deleted");
-                                    
+
                                 }
                                 ToastHelper.ShowDeleteToast();
                                 LoadData();
+                                pagelist.DisplayPropertyCards();
                             }
                             else
                             {
@@ -149,12 +155,14 @@ namespace Rafat.Gui.PropertysGui
             LoadData();
         }
 
-      
+
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Edit();
+
         }
+
 
         // Methods
         public async void LoadData()
@@ -169,32 +177,48 @@ namespace Rafat.Gui.PropertysGui
                 {
                     // Get All Data
                     data = await Task.Run(() => dataHelper.GetAllData());
+                   
                 }
                 else
                 {
                     // Get Data By User
+                    
                     data = await Task.Run(() => dataHelper.GetDataByUser(LocalUser.UserId));
+                   
                 }
-                labelNofOfItmes.Text = data.Count.ToString();
-                // Fill DataGridView
-                dataGridView1.DataSource = data.Take(Properties.Settings.Default.NoOfDataGirdViewItems).ToList();
-                if (data.Count <= Properties.Settings.Default.NoOfDataGirdViewItems)
+                if (data != null && data.Any())
                 {
-                    comboBoxNoOfPages.Items.Clear();
-                    comboBoxNoOfPages.Items.Add(0);
-
+                    datalist = new SortableBindingList<Property>(data);
+                    dataGridView1.DataSource = datalist;
+                    dataGridView1.AutoGenerateColumns = true;
+                    dataGridView1.Refresh();
                 }
                 else
                 {
-                    // Get and Add No of pages
-                    double value = Convert.ToDouble(data.Count) / Convert.ToDouble(Properties.Settings.Default.NoOfDataGirdViewItems);
-                    int noOfPage = Convert.ToInt32(Math.Round(value, MidpointRounding.AwayFromZero));
+                    dataGridView1.DataSource = null;
+                    MessageBox.Show("No data available.");
+                }
+                labelNofOfItmes.Text = datalist.Count.ToString();
+                // Fill DataGridView
+
+              
+                int itemsPerPage = Properties.Settings.Default.NoOfDataGirdViewItems;
+                if (datalist.Count <= itemsPerPage)
+                {
                     comboBoxNoOfPages.Items.Clear();
-                    for (int i = 0; i <= noOfPage; i++)
+                    comboBoxNoOfPages.Items.Add(0);
+                }
+                else
+                {
+                    double value = Convert.ToDouble(datalist.Count) / itemsPerPage;
+                    int noOfPage = Convert.ToInt32(Math.Ceiling(value));
+                    comboBoxNoOfPages.Items.Clear();
+                    for (int i = 0; i < noOfPage; i++)
                     {
                         comboBoxNoOfPages.Items.Add(i);
                     }
                 }
+
 
 
                 //
@@ -205,7 +229,7 @@ namespace Rafat.Gui.PropertysGui
                 ShowEmptyDataState();
 
                 // Clear Data
-                data.Clear();
+              
 
             }
             else
@@ -236,7 +260,7 @@ namespace Rafat.Gui.PropertysGui
 
                 // Start Load Data
                 string searchItem = textBoxSearch.Text;
-              
+
 
                 // Check if Admin or not
                 if (LocalUser.Role == "Admin")
@@ -260,18 +284,18 @@ namespace Rafat.Gui.PropertysGui
 
 
 
-           
-                dataGridView1.DataSource = data.ToList();
+                datalist = new SortableBindingList<Property>(data);
+                dataGridView1.DataSource = datalist;
+                dataGridView1.AutoGenerateColumns = true;
                 dataGridView1.Refresh();
-
                 // Set Columns Title
-            
+
 
                 // Show Empty Data
                 ShowEmptyDataState();
 
                 // Clear Data
-               
+
                 loading("Hide");
             }
             else
@@ -316,20 +340,20 @@ namespace Rafat.Gui.PropertysGui
             dataGridView1.Columns[7].HeaderCell.Value = "Added Date";
             dataGridView1.Columns[8].HeaderCell.Value = "Updated Date";
             dataGridView1.Columns[9].HeaderCell.Value = "longitude";
-            dataGridView1.Columns[10].HeaderCell.Value ="latitude";
-            dataGridView1.Columns[11].HeaderCell.Value ="userId";
-            dataGridView1.Columns[12].HeaderCell.Value ="agentId";
-            dataGridView1.Columns[13].HeaderCell.Value ="";
+            dataGridView1.Columns[10].HeaderCell.Value = "latitude";
+            dataGridView1.Columns[11].HeaderCell.Value = "userId";
+            dataGridView1.Columns[12].HeaderCell.Value = "agentId";
+            dataGridView1.Columns[13].HeaderCell.Value = "";
             dataGridView1.Columns[8].HeaderCell.Value = "";
             dataGridView1.Columns[9].HeaderCell.Value = "";
-            dataGridView1.Columns[10].HeaderCell.Value ="";
-            dataGridView1.Columns[11].HeaderCell.Value ="";
-            dataGridView1.Columns[12].HeaderCell.Value ="";
-            dataGridView1.Columns[13].HeaderCell.Value ="";
-            dataGridView1.Columns[14].HeaderCell.Value ="";
-            dataGridView1.Columns[15].HeaderCell.Value ="";
+            dataGridView1.Columns[10].HeaderCell.Value = "";
+            dataGridView1.Columns[11].HeaderCell.Value = "";
+            dataGridView1.Columns[12].HeaderCell.Value = "";
+            dataGridView1.Columns[13].HeaderCell.Value = "";
+            dataGridView1.Columns[14].HeaderCell.Value = "";
+            dataGridView1.Columns[15].HeaderCell.Value = "";
 
-             // Visible of Columns
+            // Visible of Columns
             dataGridView1.Columns[8].Visible = false;
             dataGridView1.Columns[9].Visible = false;
             dataGridView1.Columns[10].Visible = false;
@@ -400,21 +424,28 @@ namespace Rafat.Gui.PropertysGui
                         // Get Data By User
                         data = await Task.Run(() => dataHelper.GetDataByUser(LocalUser.UserId));
                     }
-
+                    
                     // Get and Set Param
-                    var idlist = data.Select(x => x.PropertyId).ToArray();
+                    var idlist = datalist.Select(x => x.PropertyId).ToArray();
                     int index = comboBoxNoOfPages.SelectedIndex;
                     int noOfItemIndex = index * Properties.Settings.Default.NoOfDataGirdViewItems;
 
+
+
                     // Fill DataGridView
-                    dataGridView1.DataSource = data.Where(x => x.PropertyId <= idlist[noOfItemIndex])
+                 
+                    var pagedata = datalist.Where(x => x.PropertyId <= idlist[noOfItemIndex])
                         .Take(Properties.Settings.Default.NoOfDataGirdViewItems).ToList();
+                    datalist = new SortableBindingList<Property>(pagedata);
+                    dataGridView1.DataSource = datalist;
+                    dataGridView1.AutoGenerateColumns = true;
+                    dataGridView1.Refresh();
 
                     // Show Empty Data
                     ShowEmptyDataState();
 
                     // Clear Data
-                    data.Clear();
+                  
                     loading("Hide");
                 }
                 else
@@ -456,85 +487,6 @@ namespace Rafat.Gui.PropertysGui
             catch { }
         }
 
-        // 
-
-        //private void buttonExportDataGridView_Click(object sender, EventArgs e)
-        //{
-        //    // Get Data
-        //    var data = (List<Core.Property>)dataGridView1.DataSource;
-        //    ExportExcel(data);
-
-        //}
-
-        //private void ExportExcel(List<Core.Property> data)
-        //{
-        //    // Define Data Table
-        //    DataTable dataTable = new DataTable();
-
-        //    // Convert to Data Table
-        //    using (var reader = FastMember.ObjectReader.Create(data))
-        //    {
-        //        dataTable.Load(reader);
-        //    }
-
-        //    // Re-Set DataTable
-        //    dataTable = arrangedDataTable(dataTable);
-
-        //    // Send to export
-        //    ExcelHelper.Export(dataTable, "Users");
-        //}
-        //private DataTable arrangedDataTable(DataTable dataTable)
-        //{
-        //    dataTable.Columns["Id"].SetOrdinal(0);
-        //    dataTable.Columns["Id"].ColumnName = "ت";
-
-        //    dataTable.Columns["FullName"].SetOrdinal(1);
-        //    dataTable.Columns["FullName"].ColumnName = "الاسم الكامل";
-
-
-        //    dataTable.Columns["UserName"].SetOrdinal(2);
-        //    dataTable.Columns["UserName"].ColumnName = "اسم المستخدم";
-
-
-        //    dataTable.Columns["Password"].SetOrdinal(3);
-        //    dataTable.Columns["Password"].ColumnName = "كلمة السر";
-
-        //    dataTable.Columns["Role"].SetOrdinal(4);
-        //    dataTable.Columns["Role"].ColumnName = "الصلاحية";
-
-        //    dataTable.Columns["IsSecondaryUser"].SetOrdinal(5);
-        //    dataTable.Columns["IsSecondaryUser"].ColumnName = "هل المستخدم ثانوي";
-
-        //    dataTable.Columns["UserId"].SetOrdinal(6);
-        //    dataTable.Columns["UserId"].ColumnName = "معرف المستخدم";
-
-        //    dataTable.Columns["Phone"].SetOrdinal(7);
-        //    dataTable.Columns["Phone"].ColumnName = "رقم الهاتف ";
-
-
-        //    dataTable.Columns["Email"].SetOrdinal(8);
-        //    dataTable.Columns["Email"].ColumnName = "البريد الالكتروني  ";
-
-
-        //    dataTable.Columns["Address"].SetOrdinal(9);
-        //    dataTable.Columns["Address"].ColumnName = "العنوان  ";
-
-
-        //    dataTable.Columns["CreatedDate"].SetOrdinal(10);
-        //    dataTable.Columns["CreatedDate"].ColumnName = "تاريخ الانشاء  ";
-
-
-        //    dataTable.Columns["EditedDate"].SetOrdinal(11);
-        //    dataTable.Columns["EditedDate"].ColumnName = "تاريخ التعديل  ";
-
-
-        //    // Removed columns
-        //    dataTable.Columns.Remove("Roles");
-        //    dataTable.Columns.Remove("SystemRecords");
-
-        //    return dataTable;
-        //} 
-
         public void loading(string state)
         {
 
@@ -559,6 +511,31 @@ namespace Rafat.Gui.PropertysGui
             buttonRefresh.Image = orignalImage;
             timer1.Stop();
 
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn clickedColumn = dataGridView1.Columns[e.ColumnIndex];
+
+            // Determine the sort direction
+            ListSortDirection sortDirection;
+            if (clickedColumn.HeaderCell.SortGlyphDirection == SortOrder.Ascending ||
+                clickedColumn.HeaderCell.SortGlyphDirection == SortOrder.None)
+            {
+                sortDirection = ListSortDirection.Ascending;
+            }
+            else
+            {
+                sortDirection = ListSortDirection.Descending;
+            }
+
+            // Sort the DataGridView by the selected column and direction
+            dataGridView1.Sort(clickedColumn, sortDirection);
+
+            // Update the sort glyph
+            clickedColumn.HeaderCell.SortGlyphDirection = sortDirection == ListSortDirection.Ascending
+                ? SortOrder.Ascending
+                : SortOrder.Descending;
         }
     }
 }

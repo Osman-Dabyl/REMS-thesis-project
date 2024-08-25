@@ -9,6 +9,7 @@ using GMap.NET.MapProviders;
 using Rafat.Core.Enums;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using Rafat.Gui.test;
 
 // ReSharper disable SpecifyACultureInStringConversionExplicitly
 
@@ -25,6 +26,7 @@ namespace Rafat.Gui.PropertysGui
         private const double ZoomStep = 0.5; // Step size for zooming
 #pragma warning disable IDE0052
         private readonly PropertsUserControl page;
+        private readonly testuser pagelist;
 #pragma warning restore IDE0052
 
 
@@ -36,6 +38,7 @@ namespace Rafat.Gui.PropertysGui
             dataHelperForPropertyFile = new PropertyFilesEF();
             dataHelperForAgent = new AgentEF();
             page = PropertsUserControl.Instance(main);
+            pagelist = testuser.Instance(main);
 
             this.Owner = main;
             this.main = main;
@@ -124,6 +127,7 @@ namespace Rafat.Gui.PropertysGui
                 }
 
                 page.LoadData();
+                pagelist.DisplayPropertyCards();
                 Close();
             }
             else
@@ -208,6 +212,7 @@ namespace Rafat.Gui.PropertysGui
                     }
                 }
                 page.LoadData();
+                pagelist.DisplayPropertyCards();
                 Close();
             }
             else
@@ -417,7 +422,7 @@ namespace Rafat.Gui.PropertysGui
             cmbStatus.SelectedIndex = -1; //
         }
 
-        private async void LoadAgents()
+        public async void LoadAgents()
         {
             var agents = await Task.Run(() => dataHelperForAgent.GetAllData());
             cmpAgent.DataSource = agents;

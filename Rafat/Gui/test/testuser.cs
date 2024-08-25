@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Rafat.Gui.PropertysGui;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Rafat.Gui.test;
 
@@ -41,13 +42,15 @@ public partial class testuser : UserControl
         db = new DBContext();
 
         DisplayPropertyCards();
-
+      
 
         //LoadData();
 
         DataGridView dataGridView1 = new DataGridView();
     }
-    private void DisplayPropertyCards()
+  
+
+    public void DisplayPropertyCards()
     {
         flowLayoutPanel1.Controls.Clear();
         var propertyCards = LoadPropertyCards();
@@ -61,18 +64,38 @@ public partial class testuser : UserControl
             {
                 Width = propertyCardControl.Width + 15, // Add padding to the panel width
                 Height = propertyCardControl.Height + 15, // Add padding to the panel height
-                Padding = new Padding(10) // Add some padding inside the panel
+                Padding = new Padding(7) // Add some padding inside the panel
             };
 
-            propertyCardControl.Dock = DockStyle.Fill; // Ensure UserControl fills the panel
+            panel.BackColor = System.Drawing.Color.FromArgb(240, 240, 245);
+            panel.BorderStyle = BorderStyle.FixedSingle;
+
+
+            propertyCardControl.Dock = DockStyle.Fill;
+            CenterControlInPanel(panel, propertyCardControl);
+
             panel.Controls.Add(propertyCardControl);
 
             flowLayoutPanel1.Controls.Add(panel);
 
-
             flowLayoutPanel1.Controls.Add(panel);
         }
     }
+
+    private void CenterControlInPanel(Panel panel, System.Windows.Forms.Control control)
+    {
+        // Calculate the available space inside the panel (excluding padding)
+        int availableWidth = panel.ClientSize.Width - panel.Padding.Left - panel.Padding.Right;
+        int availableHeight = panel.ClientSize.Height - panel.Padding.Top - panel.Padding.Bottom;
+
+        // Calculate the position to center the control
+        int x = panel.Padding.Left + (availableWidth - control.Width) / 2;
+        int y = panel.Padding.Top + (availableHeight - control.Height) / 2;
+
+        // Set the control's location
+        control.Location = new System.Drawing.Point(x, y);
+    }
+
 
 
 
@@ -80,7 +103,7 @@ public partial class testuser : UserControl
     {
         using (var context = new DBContext())
         {
-            var properties = context.Properties.ToList();
+            var properties = context.Properties.OrderByDescending(x=> x.AddedDate).ToList();
             var propertyCards = new List<PropertyCardcore>();
 
             foreach (var property in properties)
@@ -210,13 +233,13 @@ public partial class testuser : UserControl
 
     private void buttonSearch_Click(object sender, EventArgs e)
     {
-        Search();
+
     }
 
 
     private void buttonRefresh_Click(object sender, EventArgs e)
     {
-          
+
         timer1.Start();
         LoadData();
     }
@@ -276,71 +299,7 @@ public partial class testuser : UserControl
 
     }
 
-    public async void Search()
-    {
-        // Show Loading
-        loading("Show");
-        if (await Task.Run(() => dataHelper.IsCanConnect()))
-        {
 
-            if (textBoxSearch.Text == null)
-            {
-                MessageBox.Show("empty search box."); // Display a message box with the result
-            }
-
-            // Start Load Data
-            string searchItem = textBoxSearch.Text;
-
-
-            // Check if Admin or not
-            if (LocalUser.Role == "Admin")
-            {
-
-                // Get All Data
-                data = await Task.Run(() => dataHelper.SearchAll(searchItem));
-
-            }
-            else
-            {
-                // Get Data By User
-                data = await Task.Run(() => dataHelper.SearchByUser(LocalUser.UserId, searchItem));
-            }
-
-            if (data == null || !data.Any())
-            {
-                MessageBox.Show("Search returned no results."); // Display a message box with the result
-            }
-
-
-
-
-
-            dataGridView1.DataSource = data.ToList();
-            dataGridView1.Refresh();
-
-            // Set Columns Title
-
-
-            // Show Empty Data
-            ShowEmptyDataState();
-
-            // Clear Data
-
-            loading("Hide");
-        }
-        else
-        {
-            // No Connection
-            loading("Hide");
-            ShowServerErrorState();
-            MsgHelper.ShowServerError();
-        }
-
-        // Hide Loading
-        loading("Hide");
-
-
-    }
 
     private void ShowEmptyDataState()
     {
@@ -348,7 +307,7 @@ public partial class testuser : UserControl
 
     private void ShowServerErrorState()
     {
-            
+
     }
 
     private void SetColumns()
@@ -423,7 +382,7 @@ public partial class testuser : UserControl
     {
         if (e.KeyCode == Keys.Enter)
         {
-            Search();
+
         }
     }
 
@@ -562,18 +521,23 @@ public partial class testuser : UserControl
     public void loading(string state)
     {
 
-           
+
 
 
     }
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-           
+
     }
 
     private void propertyCard2_Load(object sender, EventArgs e)
     {
 
+    }
+
+    private void flowLayoutPanel1_Click(object sender, EventArgs e)
+    {
+      
     }
 }
