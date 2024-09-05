@@ -8,6 +8,6 @@ namespace Rafat.Data
 {
     public static class ConString
     {
-        public static string ConStringValue { get; set; }
+        public static string? ConStringValue { get; set; }
     }
 }

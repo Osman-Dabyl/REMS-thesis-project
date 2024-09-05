@@ -65,12 +65,11 @@ namespace Rafat.Gui.test
             buttonEdit.Text = "     Edit";
             toolTip1.SetToolTip(buttonEdit, "For Edit");
             buttonEdit.UseVisualStyleBackColor = true;
-            buttonEdit.Click += buttonEdit_Click;
-            // 
+      
             // timer1
             // 
             timer1.Interval = 1000;
-            timer1.Tick += timer1_Tick;
+        
             // 
             // panel2
             // 
@@ -91,7 +90,7 @@ namespace Rafat.Gui.test
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1002, 665);
             flowLayoutPanel1.TabIndex = 0;
-            flowLayoutPanel1.Click += flowLayoutPanel1_Click;
+        
             // 
             // testuser
             // 
