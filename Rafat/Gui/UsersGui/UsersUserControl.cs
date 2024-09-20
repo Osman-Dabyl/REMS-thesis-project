@@ -310,7 +310,7 @@ namespace Rafat.Gui.UsersGui
 
         private void ShowServerErrorState()
         {
-            // Set Title and Descripton
+            // Set Title and Description
             labelStateTitle.Text = Properties.Resources.ServerErrorTitle;
             labelStateDescription.Text = Properties.Resources.ServerErrorDescription;
             panelState.Visible = true;
@@ -318,18 +318,18 @@ namespace Rafat.Gui.UsersGui
 
         private void SetColumns()
         {
-            dataGridView1.Columns[0].HeaderCell.Value = "المعرف";
-            dataGridView1.Columns[1].HeaderCell.Value = "الاسم الكامل";
-            dataGridView1.Columns[2].HeaderCell.Value = "اسم المستخدم";
-            dataGridView1.Columns[3].HeaderCell.Value = "كلمة السر";
-            dataGridView1.Columns[4].HeaderCell.Value = "الصلاحية";
-            dataGridView1.Columns[5].HeaderCell.Value = "هل المستخدم ثانوي";
-            dataGridView1.Columns[6].HeaderCell.Value = "المعرف الاساس";
-            dataGridView1.Columns[7].HeaderCell.Value = "رقم الهاتف";
-            dataGridView1.Columns[8].HeaderCell.Value = "البريد الالكتروني";
-            dataGridView1.Columns[9].HeaderCell.Value = "السكن";
-            dataGridView1.Columns[10].HeaderCell.Value = "تاريخ الانشاء";
-            dataGridView1.Columns[11].HeaderCell.Value = "تاريخ التعديل";
+            dataGridView1.Columns[0].HeaderCell.Value = "ID";
+            dataGridView1.Columns[1].HeaderCell.Value = "Full Name";
+            dataGridView1.Columns[2].HeaderCell.Value = "User Name";
+            dataGridView1.Columns[3].HeaderCell.Value = "";
+            dataGridView1.Columns[4].HeaderCell.Value = "Role";
+            dataGridView1.Columns[5].HeaderCell.Value = "";
+            dataGridView1.Columns[6].HeaderCell.Value = "";
+            dataGridView1.Columns[7].HeaderCell.Value = "Phone Number";
+            dataGridView1.Columns[8].HeaderCell.Value = "Email Address";
+            dataGridView1.Columns[9].HeaderCell.Value = "Address";
+            dataGridView1.Columns[10].HeaderCell.Value = "Creation Date";
+            dataGridView1.Columns[11].HeaderCell.Value = "Updated Date";
 
             // Visible of Columns
             dataGridView1.Columns[3].Visible = false;

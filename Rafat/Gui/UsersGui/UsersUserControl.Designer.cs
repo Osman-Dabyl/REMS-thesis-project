@@ -146,15 +146,13 @@ namespace Rafat.Gui.UsersGui
             // 
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(230, 230, 230);
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(42, 130, 218);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(239, 246, 255);
@@ -187,9 +185,11 @@ namespace Rafat.Gui.UsersGui
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.RowTemplate.Height = 30;
+            dataGridView1.RowTemplate.Resizable = DataGridViewTriState.False;
             dataGridView1.Size = new Size(988, 542);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
