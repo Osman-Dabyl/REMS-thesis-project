@@ -1,4 +1,6 @@
-﻿namespace Rafat.Gui.HomeGui
+﻿using System.Windows.Forms;
+
+namespace Rafat.Gui.HomeGui
 {
     partial class HomeUserControl
     {
@@ -28,32 +30,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeUserControl));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            label1 = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            lblgreeting = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
             roundedPanel1 = new RJControls.RoundedPanel();
             label5 = new Label();
             label4 = new Label();
-            label3 = new Label();
+            txtOcount = new Label();
             roundedPanel2 = new RJControls.RoundedPanel();
             label9 = new Label();
             pictureBox3 = new PictureBox();
             label10 = new Label();
-            label11 = new Label();
+            txtsales = new Label();
             roundedPanel3 = new RJControls.RoundedPanel();
             label6 = new Label();
             pictureBox2 = new PictureBox();
             label7 = new Label();
-            label8 = new Label();
+            txtrevenue = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
@@ -63,9 +65,9 @@
             pictureBox6 = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox7 = new PictureBox();
-            label18 = new Label();
-            label17 = new Label();
-            label16 = new Label();
+            txtACount = new Label();
+            txtPcount = new Label();
+            txtCCount = new Label();
             label15 = new Label();
             label14 = new Label();
             label13 = new Label();
@@ -101,15 +103,15 @@
             panel4.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // lblgreeting
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Lucida Console", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(13, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(295, 24);
-            label1.TabIndex = 0;
-            label1.Text = "Good Morning Osman!";
+            lblgreeting.AutoSize = true;
+            lblgreeting.Font = new Font("Lucida Console", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblgreeting.Location = new Point(13, 17);
+            lblgreeting.Name = "lblgreeting";
+            lblgreeting.Size = new Size(295, 24);
+            lblgreeting.TabIndex = 0;
+            lblgreeting.Text = "Good Morning Osman!";
             // 
             // label2
             // 
@@ -139,7 +141,7 @@
             roundedPanel1.Controls.Add(label5);
             roundedPanel1.Controls.Add(pictureBox1);
             roundedPanel1.Controls.Add(label4);
-            roundedPanel1.Controls.Add(label3);
+            roundedPanel1.Controls.Add(txtOcount);
             roundedPanel1.Location = new Point(43, 6);
             roundedPanel1.Name = "roundedPanel1";
             roundedPanel1.Size = new Size(347, 76);
@@ -171,17 +173,17 @@
             label4.TabIndex = 5;
             label4.Text = "Orders";
             // 
-            // label3
+            // txtOcount
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe MDL2 Assets", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(97, 10);
-            label3.Margin = new Padding(7);
-            label3.Name = "label3";
-            label3.Size = new Size(40, 32);
-            label3.TabIndex = 4;
-            label3.Text = "54";
+            txtOcount.AutoSize = true;
+            txtOcount.BackColor = Color.Transparent;
+            txtOcount.Font = new Font("Segoe MDL2 Assets", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            txtOcount.Location = new Point(97, 10);
+            txtOcount.Margin = new Padding(7);
+            txtOcount.Name = "txtOcount";
+            txtOcount.Size = new Size(40, 32);
+            txtOcount.TabIndex = 4;
+            txtOcount.Text = "54";
             // 
             // roundedPanel2
             // 
@@ -190,7 +192,7 @@
             roundedPanel2.Controls.Add(label9);
             roundedPanel2.Controls.Add(pictureBox3);
             roundedPanel2.Controls.Add(label10);
-            roundedPanel2.Controls.Add(label11);
+            roundedPanel2.Controls.Add(txtsales);
             roundedPanel2.Location = new Point(851, 6);
             roundedPanel2.Name = "roundedPanel2";
             roundedPanel2.Size = new Size(347, 76);
@@ -232,17 +234,17 @@
             label10.TabIndex = 9;
             label10.Text = "Total Sales";
             // 
-            // label11
+            // txtsales
             // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.Transparent;
-            label11.Font = new Font("Segoe MDL2 Assets", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(106, 10);
-            label11.Margin = new Padding(0);
-            label11.Name = "label11";
-            label11.Size = new Size(105, 32);
-            label11.TabIndex = 8;
-            label11.Text = "545645$";
+            txtsales.AutoSize = true;
+            txtsales.BackColor = Color.Transparent;
+            txtsales.Font = new Font("Segoe MDL2 Assets", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            txtsales.Location = new Point(106, 10);
+            txtsales.Margin = new Padding(0);
+            txtsales.Name = "txtsales";
+            txtsales.Size = new Size(105, 32);
+            txtsales.TabIndex = 8;
+            txtsales.Text = "545645$";
             // 
             // roundedPanel3
             // 
@@ -251,7 +253,7 @@
             roundedPanel3.Controls.Add(label6);
             roundedPanel3.Controls.Add(pictureBox2);
             roundedPanel3.Controls.Add(label7);
-            roundedPanel3.Controls.Add(label8);
+            roundedPanel3.Controls.Add(txtrevenue);
             roundedPanel3.Location = new Point(446, 6);
             roundedPanel3.Name = "roundedPanel3";
             roundedPanel3.Size = new Size(347, 76);
@@ -293,22 +295,22 @@
             label7.TabIndex = 9;
             label7.Text = "Revenue";
             // 
-            // label8
+            // txtrevenue
             // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Segoe MDL2 Assets", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(102, 10);
-            label8.Margin = new Padding(0);
-            label8.Name = "label8";
-            label8.Size = new Size(92, 32);
-            label8.TabIndex = 8;
-            label8.Text = "54787$";
-            label8.TextAlign = ContentAlignment.MiddleLeft;
+            txtrevenue.AutoSize = true;
+            txtrevenue.BackColor = Color.Transparent;
+            txtrevenue.Font = new Font("Segoe MDL2 Assets", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            txtrevenue.Location = new Point(102, 10);
+            txtrevenue.Margin = new Padding(0);
+            txtrevenue.Name = "txtrevenue";
+            txtrevenue.Size = new Size(92, 32);
+            txtrevenue.TabIndex = 8;
+            txtrevenue.Text = "54787$";
+            txtrevenue.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(lblgreeting);
             panel1.Controls.Add(label2);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -349,18 +351,18 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
             chart1.Dock = DockStyle.Fill;
-            legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            chart1.Legends.Add(legend2);
             chart1.Location = new Point(0, 0);
             chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chart1.Series.Add(series2);
             chart1.Size = new Size(540, 487);
             chart1.TabIndex = 2;
             chart1.Text = "chart1";
@@ -372,9 +374,9 @@
             roundedPanel6.Controls.Add(pictureBox6);
             roundedPanel6.Controls.Add(pictureBox5);
             roundedPanel6.Controls.Add(pictureBox7);
-            roundedPanel6.Controls.Add(label18);
-            roundedPanel6.Controls.Add(label17);
-            roundedPanel6.Controls.Add(label16);
+            roundedPanel6.Controls.Add(txtACount);
+            roundedPanel6.Controls.Add(txtPcount);
+            roundedPanel6.Controls.Add(txtCCount);
             roundedPanel6.Controls.Add(label15);
             roundedPanel6.Controls.Add(label14);
             roundedPanel6.Controls.Add(label13);
@@ -415,35 +417,35 @@
             pictureBox7.TabIndex = 10;
             pictureBox7.TabStop = false;
             // 
-            // label18
+            // txtACount
             // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Myanmar Text", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label18.Location = new Point(313, 252);
-            label18.Name = "label18";
-            label18.Size = new Size(65, 63);
-            label18.TabIndex = 7;
-            label18.Text = "50";
+            txtACount.AutoSize = true;
+            txtACount.Font = new Font("Myanmar Text", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            txtACount.Location = new Point(313, 252);
+            txtACount.Name = "txtACount";
+            txtACount.Size = new Size(65, 63);
+            txtACount.TabIndex = 7;
+            txtACount.Text = "50";
             // 
-            // label17
+            // txtPcount
             // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Myanmar Text", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(313, 374);
-            label17.Name = "label17";
-            label17.Size = new Size(65, 63);
-            label17.TabIndex = 6;
-            label17.Text = "50";
+            txtPcount.AutoSize = true;
+            txtPcount.Font = new Font("Myanmar Text", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPcount.Location = new Point(313, 374);
+            txtPcount.Name = "txtPcount";
+            txtPcount.Size = new Size(65, 63);
+            txtPcount.TabIndex = 6;
+            txtPcount.Text = "50";
             // 
-            // label16
+            // txtCCount
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Myanmar Text", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(313, 140);
-            label16.Name = "label16";
-            label16.Size = new Size(65, 63);
-            label16.TabIndex = 5;
-            label16.Text = "50";
+            txtCCount.AutoSize = true;
+            txtCCount.Font = new Font("Myanmar Text", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCCount.Location = new Point(313, 140);
+            txtCCount.Name = "txtCCount";
+            txtCCount.Size = new Size(65, 63);
+            txtCCount.TabIndex = 5;
+            txtCCount.Text = "50";
             // 
             // label15
             // 
@@ -523,57 +525,47 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(230, 230, 230);
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(42, 130, 218);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(230, 230, 230);
+            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(42, 130, 218);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(239, 246, 255);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(43, 43, 81);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(239, 246, 255);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(239, 246, 255);
+            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(43, 43, 81);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(239, 246, 255);
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, name, DateAdded });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(217, 217, 217);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(42, 130, 218);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(217, 217, 217);
+            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(42, 130, 218);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(0, 35);
+            dataGridView1.Location = new Point(0, 65);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(230, 230, 230);
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(239, 246, 255);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1126, 178);
-            dataGridView1.TabIndex = 3;
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridView1.RowTemplate.Height = 30;
+            dataGridView1.RowTemplate.Resizable = DataGridViewTriState.False;
+            dataGridView1.Size = new Size(988, 542);
+            dataGridView1.TabIndex = 2;
+            
             // 
             // ID
             // 
@@ -659,13 +651,13 @@
 
         #endregion
 
-        private Label label1;
+        private Label lblgreeting;
         private Label label2;
         private PictureBox pictureBox1;
         private RJControls.RoundedPanel roundedPanel1;
         private Label label5;
         private Label label4;
-        private Label label3;
+        private Label txtOcount;
         private RJControls.RoundedPanel roundedPanel2;
         private RJControls.RoundedPanel roundedPanel3;
         private Panel panel1;
@@ -677,17 +669,17 @@
         private Label label6;
         private PictureBox pictureBox2;
         private Label label7;
-        private Label label8;
+        private Label txtrevenue;
         private Label label9;
         private PictureBox pictureBox3;
         private Label label10;
-        private Label label11;
+        private Label txtsales;
         private PictureBox pictureBox4;
         private Label label12;
         private PictureBox pictureBox7;
-        private Label label18;
-        private Label label17;
-        private Label label16;
+        private Label txtACount;
+        private Label txtPcount;
+        private Label txtCCount;
         private Label label15;
         private Label label14;
         private Label label13;

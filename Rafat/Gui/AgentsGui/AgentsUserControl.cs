@@ -305,11 +305,13 @@ namespace Rafat.Gui.AgentsGui
             dataGridView1.Columns[3].HeaderCell.Value ="AddedDate";
             dataGridView1.Columns[4].HeaderCell.Value ="ModifiedDate";
             dataGridView1.Columns[5].HeaderCell.Value ="UserId";
-           
+            dataGridView1.Columns[6].HeaderCell.Value = "UserId";
             // Visible of Columns
             dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[5].Visible = false;
-            
+            dataGridView1.Columns[7].Visible = false;
+
+
 
 
         }

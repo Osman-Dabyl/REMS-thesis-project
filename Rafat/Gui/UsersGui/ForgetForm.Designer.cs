@@ -45,7 +45,6 @@
             txtEmail.PlaceholderText = "Enter Your Email";
             txtEmail.Size = new Size(451, 45);
             txtEmail.TabIndex = 0;
-            txtEmail.Text = "Usaamemohamed@gmaill.com";
             txtEmail.TextAlign = HorizontalAlignment.Center;
             // 
             // label1

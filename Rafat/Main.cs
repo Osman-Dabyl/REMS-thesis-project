@@ -29,6 +29,7 @@ public partial class Main : Form
     private ReportMaker? reportMaker;
     private readonly IDataHelper<SystemRecords> dataHelperForSystemRecords;
     private LoginForm? loginForm;
+    private AboutBox aboutBox;
     // ReSharper disable once RedundantDefaultMemberInitializer
     private bool _isLoggingOut = false;
     public Main()
@@ -296,18 +297,34 @@ public partial class Main : Form
             loginForm = new LoginForm();
 
             loginForm.Show();
-            this.Close();
+            this.Hide();
         }
         else
         {
             loginForm.Show();
             loginForm.Focus();
-            this.Close();
+            this.Hide();
         }
     }
 
     private void viewListToolStripMenuItem_Click(object sender, EventArgs e)
     {
         pageHelper.SetPage(testuser.Instance(_main!));
+    }
+
+    private void btnAbout_Click(object sender, EventArgs e)
+    {
+        if (aboutBox == null || aboutBox.IsDisposed)
+        {
+            aboutBox = new AboutBox();
+
+            aboutBox.Show();
+           
+        }
+        else
+        {
+            aboutBox.Show();
+            aboutBox.Focus();
+        }
     }
 }

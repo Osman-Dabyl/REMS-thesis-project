@@ -286,12 +286,14 @@ namespace Rafat.Gui.CustomersGui
             dataGridView1.Columns[2].HeaderCell.Value = "Phone";
             dataGridView1.Columns[3].HeaderCell.Value = "AddedDate";
             dataGridView1.Columns[4].HeaderCell.Value = "ModifiedDate";
-            dataGridView1.Columns[5].HeaderCell.Value = "UserId";
+            dataGridView1.Columns[7].HeaderCell.Value = "UserId";
+          
 
             // Visible of Columns
             dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[5].Visible = false;
-
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[8].Visible = false;
 
 
         }

@@ -352,6 +352,7 @@ namespace Rafat.Gui.PropertysGui
             dataGridView1.Columns[13].HeaderCell.Value = "";
             dataGridView1.Columns[14].HeaderCell.Value = "";
             dataGridView1.Columns[15].HeaderCell.Value = "";
+            dataGridView1.Columns[16].HeaderCell.Value = "";
 
             // Visible of Columns
             dataGridView1.Columns[8].Visible = false;
@@ -368,7 +369,7 @@ namespace Rafat.Gui.PropertysGui
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
             dataGridView1.Columns[15].Visible = false;
-
+            dataGridView1.Columns[16].Visible = false;
         }
 
 
