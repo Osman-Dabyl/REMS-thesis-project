@@ -14,6 +14,8 @@ namespace Rafat.Gui.test
             public Image PropertyImage { get; set; }
             public string PropertyName { get; set; }
             public decimal Price { get; set; }
+             
+            public string Stuts { get; set; }
         
 
     }

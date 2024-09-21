@@ -70,12 +70,12 @@
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(textBoxServer);
             groupBox1.Controls.Add(label4);
-            groupBox1.Location = new Point(35, 19);
+            groupBox1.Location = new Point(523, 39);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(420, 634);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "اعدادات الاتصال";
+            groupBox1.Text = "Connection Settings";
             // 
             // buttonSaveConnection
             // 
@@ -83,22 +83,22 @@
             buttonSaveConnection.ForeColor = Color.Black;
             buttonSaveConnection.Image = Properties.Resources.icons8_save_32px;
             buttonSaveConnection.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonSaveConnection.Location = new Point(223, 568);
+            buttonSaveConnection.Location = new Point(146, 568);
             buttonSaveConnection.Name = "buttonSaveConnection";
             buttonSaveConnection.Size = new Size(178, 60);
             buttonSaveConnection.TabIndex = 5;
-            buttonSaveConnection.Text = "حفظ";
+            buttonSaveConnection.Text = "Save";
             buttonSaveConnection.UseVisualStyleBackColor = true;
             buttonSaveConnection.Click += buttonSaveConnection_Click;
             // 
             // radioButtonNetwork
             // 
             radioButtonNetwork.AutoSize = true;
-            radioButtonNetwork.Location = new Point(150, 44);
+            radioButtonNetwork.Location = new Point(39, 44);
             radioButtonNetwork.Name = "radioButtonNetwork";
-            radioButtonNetwork.Size = new Size(92, 41);
+            radioButtonNetwork.Size = new Size(128, 33);
             radioButtonNetwork.TabIndex = 0;
-            radioButtonNetwork.Text = "شبكي";
+            radioButtonNetwork.Text = "Network";
             radioButtonNetwork.UseVisualStyleBackColor = true;
             radioButtonNetwork.CheckedChanged += radioButtonNetwork_CheckedChanged;
             // 
@@ -108,7 +108,7 @@
             numericUpDownDuration.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
             numericUpDownDuration.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             numericUpDownDuration.Name = "numericUpDownDuration";
-            numericUpDownDuration.Size = new Size(372, 45);
+            numericUpDownDuration.Size = new Size(372, 35);
             numericUpDownDuration.TabIndex = 2;
             numericUpDownDuration.Value = new decimal(new int[] { 60, 0, 0, 0 });
             // 
@@ -118,10 +118,10 @@
             radioButtonLocal.Checked = true;
             radioButtonLocal.Location = new Point(271, 44);
             radioButtonLocal.Name = "radioButtonLocal";
-            radioButtonLocal.Size = new Size(84, 41);
+            radioButtonLocal.Size = new Size(96, 33);
             radioButtonLocal.TabIndex = 0;
             radioButtonLocal.TabStop = true;
-            radioButtonLocal.Text = "محلي";
+            radioButtonLocal.Text = "Local";
             radioButtonLocal.UseVisualStyleBackColor = true;
             radioButtonLocal.CheckedChanged += radioButtonLocal_CheckedChanged;
             // 
@@ -131,7 +131,7 @@
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PasswordChar = '*';
             textBoxPassword.RightToLeft = RightToLeft.No;
-            textBoxPassword.Size = new Size(374, 45);
+            textBoxPassword.Size = new Size(374, 35);
             textBoxPassword.TabIndex = 1;
             textBoxPassword.Text = "sa";
             textBoxPassword.TextAlign = HorizontalAlignment.Center;
@@ -139,11 +139,11 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(227, 459);
+            label8.Location = new Point(23, 454);
             label8.Name = "label8";
-            label8.Size = new Size(168, 37);
+            label8.Size = new Size(171, 29);
             label8.TabIndex = 0;
-            label8.Text = "فترة الاتصال ( ثانية)";
+            label8.Text = "TimeOut (Sec)";
             // 
             // textBoxUserName
             // 
@@ -151,7 +151,7 @@
             textBoxUserName.Name = "textBoxUserName";
             textBoxUserName.PasswordChar = '*';
             textBoxUserName.RightToLeft = RightToLeft.No;
-            textBoxUserName.Size = new Size(374, 45);
+            textBoxUserName.Size = new Size(374, 35);
             textBoxUserName.TabIndex = 1;
             textBoxUserName.Text = "sa";
             textBoxUserName.TextAlign = HorizontalAlignment.Center;
@@ -159,27 +159,27 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(295, 362);
+            label7.Location = new Point(27, 366);
             label7.Name = "label7";
-            label7.Size = new Size(100, 37);
+            label7.Size = new Size(120, 29);
             label7.TabIndex = 0;
-            label7.Text = "كلمة السر";
+            label7.Text = "Password";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(271, 274);
+            label6.Location = new Point(29, 282);
             label6.Name = "label6";
-            label6.Size = new Size(140, 37);
+            label6.Size = new Size(135, 29);
             label6.TabIndex = 0;
-            label6.Text = "اسم المستخدم";
+            label6.Text = "User Name";
             // 
             // textBoxDataBase
             // 
             textBoxDataBase.Location = new Point(29, 220);
             textBoxDataBase.Name = "textBoxDataBase";
             textBoxDataBase.RightToLeft = RightToLeft.No;
-            textBoxDataBase.Size = new Size(374, 45);
+            textBoxDataBase.Size = new Size(374, 35);
             textBoxDataBase.TabIndex = 1;
             textBoxDataBase.Text = "RafatDB";
             textBoxDataBase.TextAlign = HorizontalAlignment.Center;
@@ -187,18 +187,18 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(271, 180);
+            label5.Location = new Point(29, 188);
             label5.Name = "label5";
-            label5.Size = new Size(130, 37);
+            label5.Size = new Size(186, 29);
             label5.TabIndex = 0;
-            label5.Text = "قاعدة البيانات";
+            label5.Text = "Database Name";
             // 
             // textBoxServer
             // 
             textBoxServer.Location = new Point(29, 131);
             textBoxServer.Name = "textBoxServer";
             textBoxServer.RightToLeft = RightToLeft.No;
-            textBoxServer.Size = new Size(374, 45);
+            textBoxServer.Size = new Size(374, 35);
             textBoxServer.TabIndex = 1;
             textBoxServer.Text = ".\\SQLEXPRESS";
             textBoxServer.TextAlign = HorizontalAlignment.Center;
@@ -206,11 +206,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(328, 91);
+            label4.Location = new Point(29, 99);
             label4.Name = "label4";
-            label4.Size = new Size(75, 37);
+            label4.Size = new Size(84, 29);
             label4.TabIndex = 0;
-            label4.Text = "السيرفر";
+            label4.Text = "Server";
             // 
             // groupBox2
             // 
@@ -221,12 +221,12 @@
             groupBox2.Controls.Add(label2);
             groupBox2.Controls.Add(textBoxCompnayName);
             groupBox2.Controls.Add(label1);
-            groupBox2.Location = new Point(527, 29);
+            groupBox2.Location = new Point(28, 63);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(420, 535);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
-            groupBox2.Text = "اعدادات عامة";
+            groupBox2.Text = "General Settings";
             // 
             // buttonSaveGenralSettings
             // 
@@ -234,11 +234,11 @@
             buttonSaveGenralSettings.ForeColor = Color.Black;
             buttonSaveGenralSettings.Image = Properties.Resources.icons8_save_32px;
             buttonSaveGenralSettings.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonSaveGenralSettings.Location = new Point(225, 449);
+            buttonSaveGenralSettings.Location = new Point(123, 450);
             buttonSaveGenralSettings.Name = "buttonSaveGenralSettings";
             buttonSaveGenralSettings.Size = new Size(178, 60);
             buttonSaveGenralSettings.TabIndex = 5;
-            buttonSaveGenralSettings.Text = "حفظ";
+            buttonSaveGenralSettings.Text = "Save";
             buttonSaveGenralSettings.UseVisualStyleBackColor = true;
             buttonSaveGenralSettings.Click += buttonSaveGenralSettings_Click;
             // 
@@ -248,7 +248,7 @@
             numericUpDownNoOfItmes.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
             numericUpDownNoOfItmes.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             numericUpDownNoOfItmes.Name = "numericUpDownNoOfItmes";
-            numericUpDownNoOfItmes.Size = new Size(372, 45);
+            numericUpDownNoOfItmes.Size = new Size(372, 35);
             numericUpDownNoOfItmes.TabIndex = 2;
             numericUpDownNoOfItmes.Value = new decimal(new int[] { 50, 0, 0, 0 });
             // 
@@ -256,65 +256,65 @@
             // 
             textBoxCurrency.Location = new Point(29, 206);
             textBoxCurrency.Name = "textBoxCurrency";
-            textBoxCurrency.Size = new Size(374, 45);
+            textBoxCurrency.Size = new Size(374, 35);
             textBoxCurrency.TabIndex = 1;
             textBoxCurrency.TextAlign = HorizontalAlignment.Center;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(204, 302);
+            label3.Location = new Point(31, 296);
             label3.Name = "label3";
-            label3.Size = new Size(199, 37);
+            label3.Size = new Size(178, 29);
             label3.TabIndex = 0;
-            label3.Text = "عدد العناصر المعروضة";
+            label3.Text = "Items Per Page";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(330, 166);
+            label2.Location = new Point(29, 165);
             label2.Name = "label2";
-            label2.Size = new Size(73, 37);
+            label2.Size = new Size(109, 29);
             label2.TabIndex = 0;
-            label2.Text = "العملة";
+            label2.Text = "Currency";
             // 
             // textBoxCompnayName
             // 
             textBoxCompnayName.Location = new Point(29, 95);
             textBoxCompnayName.Name = "textBoxCompnayName";
-            textBoxCompnayName.Size = new Size(374, 45);
+            textBoxCompnayName.Size = new Size(374, 35);
             textBoxCompnayName.TabIndex = 1;
             textBoxCompnayName.TextAlign = HorizontalAlignment.Center;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(264, 55);
+            label1.Location = new Point(31, 54);
             label1.Name = "label1";
-            label1.Size = new Size(139, 37);
+            label1.Size = new Size(186, 29);
             label1.TabIndex = 0;
-            label1.Text = "اسم المؤسسة";
+            label1.Text = "Company Name";
             // 
             // SettingForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 37F);
+            AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(976, 682);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Font = new Font("Cairo", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(6, 9, 6, 9);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "SettingForm";
             Padding = new Padding(16, 26, 16, 26);
-            RightToLeft = RightToLeft.Yes;
+            RightToLeft = RightToLeft.No;
             RightToLeftLayout = true;
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "اعدادات البرنامج";
+            Text = "Application Settings";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownDuration).EndInit();

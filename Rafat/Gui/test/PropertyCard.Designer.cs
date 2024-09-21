@@ -31,6 +31,7 @@
             pictureBox1 = new PictureBox();
             labelName = new Label();
             labelPrice = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -67,6 +68,17 @@
             labelPrice.TabIndex = 2;
             labelPrice.Text = "300.0$";
             // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom;
+            label1.Font = new Font("Bahnschrift SemiBold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(0, 0, 46);
+            label1.Location = new Point(107, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(73, 34);
+            label1.TabIndex = 3;
+            label1.Text = "Rent";
+            // 
             // PropertyCard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -74,6 +86,7 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.Transparent;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(label1);
             Controls.Add(labelPrice);
             Controls.Add(labelName);
             Controls.Add(pictureBox1);
@@ -89,5 +102,6 @@
         private PictureBox pictureBox1;
         private Label labelName;
         private Label labelPrice;
+        private Label label1;
     }
 }

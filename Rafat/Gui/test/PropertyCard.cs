@@ -36,13 +36,15 @@ public partial class PropertyCard : UserControl
     public int PropertyId { get; set; }
 
 
-    public void SetData(int propertyId, Image image, string name, string price)
+    public void SetData(int propertyId, Image image, string name, string price,string stuts)
     {
         PropertyId = propertyId;
         pictureBox1.Image = image;
         labelName.Text = name;
         labelPrice.Text = price;
-        
+        label1.Text = stuts;
+
+
     }
 
     protected override void OnResize(EventArgs e)

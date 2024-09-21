@@ -2,6 +2,7 @@
 using Rafat.Data.EF;
 using Rafat.Gui.PropertysGui;
 using System.Data;
+using static Rafat.Core.Enums.Property_Stutus;
 
 
 namespace Rafat.Gui.test;
@@ -41,7 +42,7 @@ public partial class testuser : UserControl
         foreach (var card in propertyCards)
         {
             var propertyCardControl = new PropertyCard();
-            propertyCardControl.SetData(card.PropertyId, card.PropertyImage, card.PropertyName, $"${card.Price:F2}");
+            propertyCardControl.SetData(card.PropertyId, card.PropertyImage, card.PropertyName, $"${card.Price:F2}",card.Stuts);
 
             var panel = new Panel
             {
@@ -86,7 +87,7 @@ public partial class testuser : UserControl
     {
         using (var context = new DBContext())
         {
-            var properties = context.Properties.OrderByDescending(x => x.AddedDate).ToList();
+            var properties = context.Properties.OrderByDescending(x => x.AddedDate).Where(x => x.Status == PropertyStatus.Available).ToList();
             var propertyCards = new List<PropertyCardcore>();
 
             foreach (var property in properties)
@@ -103,7 +104,9 @@ public partial class testuser : UserControl
                     PropertyId = property.PropertyId,
                     PropertyImage = propertyImage,
                     PropertyName = property.PropertyName,
-                    Price = property.Price
+                    Price = property.Price,
+                    Stuts = property.Listing.ToString()
+
                 });
             }
 
