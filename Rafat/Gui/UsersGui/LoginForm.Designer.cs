@@ -36,6 +36,7 @@
             label5 = new Label();
             label3 = new Label();
             panel1 = new Panel();
+            label7 = new Label();
             checkBox1 = new CheckBox();
             label2 = new Label();
             label1 = new Label();
@@ -57,8 +58,8 @@
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(385, 35);
             textBoxPassword.TabIndex = 1;
-            textBoxPassword.UseSystemPasswordChar = true;
             textBoxPassword.TextAlign = HorizontalAlignment.Center;
+            textBoxPassword.UseSystemPasswordChar = true;
             // 
             // label6
             // 
@@ -111,6 +112,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
@@ -129,14 +131,26 @@
             panel1.Size = new Size(554, 779);
             panel1.TabIndex = 1;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = SystemColors.MenuHighlight;
+            label7.Location = new Point(88, 528);
+            label7.Name = "label7";
+            label7.Size = new Size(175, 25);
+            label7.TabIndex = 6;
+            label7.Text = "Forget Password ?";
+            label7.Click += label7_Click;
+            // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBox1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBox1.ForeColor = SystemColors.MenuHighlight;
             checkBox1.Location = new Point(358, 527);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(165, 26);
+            checkBox1.Size = new Size(179, 29);
             checkBox1.TabIndex = 5;
             checkBox1.Text = "Show Password";
             checkBox1.UseVisualStyleBackColor = true;
@@ -268,5 +282,6 @@
         private Label label1;
         private Label label2;
         private CheckBox checkBox1;
+        private Label label7;
     }
 }

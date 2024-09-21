@@ -10,13 +10,15 @@ namespace Rafat.Gui.UsersGui
     {
         private readonly IDataHelper<Users> dataHelperForUser;
 
+        private ForgetForm forgetForm;
+
         public LoginForm()
         {
             InitializeComponent();
-          
+
             dataHelperForUser = new UsersEF();
-          
-      
+
+
 
         }
 
@@ -110,10 +112,10 @@ namespace Rafat.Gui.UsersGui
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
-          
+
             if (checkBox1.Checked)
             {
-               textBoxPassword.UseSystemPasswordChar = false; // Show password
+                textBoxPassword.UseSystemPasswordChar = false; // Show password
             }
             else
             {
@@ -124,9 +126,24 @@ namespace Rafat.Gui.UsersGui
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
         {
-            
 
-           
+
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            if (forgetForm == null)
+            {
+                forgetForm = new ForgetForm();
+                forgetForm.Show();
+              
+            }
+            else
+            {
+                forgetForm.Show();
+            }
         }
     }
 }

@@ -23,6 +23,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
     <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.21" />
     <PackageReference Include="System.Security.Cryptography.Csp" Version="4.3.0" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.2" />
@@ -61,6 +62,9 @@
     </Compile>
     <Compile Update="Gui\test\testuser.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Gui\UsersGui\PasswordReset.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="Gui\UsersGui\LoginForm.cs">
       <SubType>Form</SubType>
